@@ -9,7 +9,7 @@ function App() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-400">
       <BrowserRouter>
         <Route exact path="/">
-          <h1 class="text-3xl md:text-4xl font-medium m-2 text-indigo-700">
+          <h1 class="text-3xl text-center md:text-4xl font-heading font-bold m-2 text-indigo-500">
             To Do App using React as a FrontEnd and Flask API as a Backend
           </h1>{" "}
           <Input />
@@ -18,6 +18,9 @@ function App() {
         <Route path="/view">
           <TaskCard />
         </Route>
+        <h1 class="text-md font-heading m-2 text-white">
+          Coded with ❤️ by Prajwal
+        </h1>{" "}
       </BrowserRouter>
     </div>
   );

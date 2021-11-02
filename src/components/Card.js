@@ -10,6 +10,7 @@ const Card = () => {
   const [isDisabled, setIsDisabled] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [showAll, setShowAll] = useState(false);
   const [task, setTask] = useState("");
   const [props, setProps] = useState([]);
   useEffect(() => {
@@ -45,14 +46,29 @@ const Card = () => {
           <ErrorAlert error={errorMessage} />
         </div>
       )}
+      {!showAll && (
+        <button
+          className="bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded m-2"
+          onClick={() => setShowAll(true)}
+        >
+          Show Completed
+        </button>
+      )}
+      {showAll && (
+        <button
+          className="bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded m-2"
+          onClick={() => setShowAll(false)}
+        >
+          Hide Completed
+        </button>
+      )}
       {props.map((props) => {
-        const id = props.id;
         return (
           <div className="group w-full lg:w-1/3" key={props.id}>
             <div className=" bg-gray-50 p-5 m-5 transition duration-500 transform hover:scale-125 flex flex-row justify-between">
               {" "}
               <div>
-                {props.status == 1 && (
+                {showAll == 1 && props.status == 1 && (
                   <>
                     <Link to={`view/?id=${props.id}`}>
                       <h1 className="text-xl lg:text-3xl ml-2 font-semibold text-green-400 group-hover:text-gray-500 active:text-green-400 line-through	">
@@ -89,7 +105,7 @@ const Card = () => {
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                         type="submit"
                       >
-                        {!isLoading ? "👀 What did I do" : "loading..."}
+                        {!isLoading ? "👀" : "loading..."}
                       </button>
                     </Link>
                   </>
@@ -99,7 +115,7 @@ const Card = () => {
                       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                       type="submit"
                     >
-                      {!isLoading ? "👀 View Task" : "loading..."}
+                      {!isLoading ? "👀" : "loading..."}
                     </button>
                   </Link>
                 )}

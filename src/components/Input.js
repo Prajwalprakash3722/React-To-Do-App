@@ -54,18 +54,18 @@ const Input = () => {
     <>
       {success && <SuccessAlert success={successMessage} />}
       {error && <ErrorAlert error={errorMessage} />}
-      <div className="group w-full h-full m-5 lg:w-1/2">
+      <div className="w-full h-full m-5 lg:w-1/2">
         <div className=" bg-blue-100 m-5 rounded-md flex flex-row justify-around items-center p-2">
           {" "}
           <h1 className="text-2xl text-blue-600 font-extrabold">Add Task:</h1>
           <form className="flex flex-col" onSubmit={handleSubmit}>
             <div>
               <textarea
-                className="resize-none overflow-hidden bg-blue-100 px-2 py-2 text-gray-800 leading-tight focus:outline-none font-semibold"
+                className="resize overflow-hidden bg-blue-100 px-2 py-2 text-gray-800 leading-tight focus:outline-none font-heading"
                 type="text"
                 placeholder="Task Details"
-                height="100%"
                 rows="4"
+                cols="10"
                 onChange={(e) => setDetails(e.target.value)}
                 required
               />

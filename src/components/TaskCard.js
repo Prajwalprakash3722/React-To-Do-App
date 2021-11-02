@@ -81,7 +81,7 @@ const TaskCard = () => {
         setEdit(false);
         setTimeout(() => {
           window.location.href = "/";
-        }, 3000);
+        }, 500);
       })
       .catch((err) => {
         setError(true);
@@ -131,7 +131,7 @@ const TaskCard = () => {
               <h1 className="text-xl lg:text-3xl ml-2 font-semibold text-green-400 group-hover:text-gray-500 active:text-green-400">
                 🦄 {props.title}
               </h1>
-              <p className="text-xl font-thin p-2">
+              <p className="text-xl font-thin p-2 min-w-full">
                 <b>Task Details: </b>
                 {props.description}
               </p>
@@ -139,10 +139,10 @@ const TaskCard = () => {
                 Last Modified On: {props.updated_at}
               </p>
               <button
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                className="bg-red-400 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                 onClick={deleteStatus}
               >
-                Delete
+                ❌
               </button>
             </>
           )}
@@ -166,13 +166,19 @@ const TaskCard = () => {
                       setEdit(true);
                     }}
                   >
-                    Edit
+                    ✏️
                   </button>
                   <button
-                    className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                    className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2"
                     onClick={updateStatus}
                   >
-                    ✅ Done
+                    ✅
+                  </button>
+                  <button
+                    className="bg-red-400 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                    onClick={deleteStatus}
+                  >
+                    ❌
                   </button>
                 </>
               )}
@@ -201,7 +207,9 @@ const TaskCard = () => {
                         onChange={(e) => setDetails(e.target.value)}
                         width="100%"
                         required
-                      />
+                      >
+                        {props.description}
+                      </textarea>
                     </div>
                     <button
                       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -223,7 +231,7 @@ const TaskCard = () => {
             window.location.reload();
           }}
         >
-          Refresh
+          🔄 Refresh
         </button>
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2"
@@ -231,7 +239,7 @@ const TaskCard = () => {
             window.location.href = "/";
           }}
         >
-          Back
+          🔙 Back
         </button>
       </div>
     </>
