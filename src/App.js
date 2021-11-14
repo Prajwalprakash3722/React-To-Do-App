@@ -4,24 +4,15 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Card from "./components/Card";
 import Input from "./components/Input";
 import TaskCard from "./components/TaskCard";
+import Users from "./components/Users";
 function App() {
   const [loading, setLoading] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
-  const [users, setUsers] = useState([]);
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       setLoggedIn(true);
-      fetch("http://192.168.29.200:5000/tasks", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          token: localStorage.getItem("token"),
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => setUsers(data));
     } else {
       setLoggedIn(false);
     }
@@ -133,6 +124,7 @@ function App() {
               <Card />
             </>
           )}
+          {loggedIn && <Users />}
         </Route>
         <Route path="/view">
           <TaskCard />
