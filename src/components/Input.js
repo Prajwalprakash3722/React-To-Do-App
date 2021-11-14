@@ -17,6 +17,7 @@ const Input = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        token: localStorage.getItem("token"),
       },
       body: JSON.stringify({
         title: details.slice(0, 10),

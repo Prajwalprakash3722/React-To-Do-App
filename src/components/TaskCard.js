@@ -7,17 +7,30 @@ const TaskCard = () => {
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
     const id = queryParams.get("id");
-    fetch(`http://192.168.29.200:5000/task/${id}`)
+    fetch(`http://192.168.29.200:5000/task/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        token: localStorage.getItem("token"),
+      },
+    })
       .then((res) => res.json())
       .then((data) => setProps(data));
   }, [success]);
 
   const requestOptions = {
     method: "PUT",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      token: localStorage.getItem("token"),
+    },
   };
   const requestOptions2 = {
     method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      token: localStorage.getItem("token"),
+    },
   };
   const [props, setProps] = useState([]);
   const [edit, setEdit] = useState(false);
@@ -175,7 +188,7 @@ const TaskCard = () => {
                     ✅
                   </button>
                   <button
-                    className="bg-red-400 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                    className="group-1 bg-red-400 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                     onClick={deleteStatus}
                   >
                     ❌

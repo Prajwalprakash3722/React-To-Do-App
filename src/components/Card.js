@@ -14,7 +14,13 @@ const Card = () => {
   const [task, setTask] = useState("");
   const [props, setProps] = useState([]);
   useEffect(() => {
-    fetch("http://192.168.29.200:5000/tasks")
+    fetch("http://192.168.29.200:5000/tasks", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        token: localStorage.getItem("token"),
+      },
+    })
       .then((res) => res.json())
       .then((data) => setProps(data))
       .then((data) => {
@@ -46,7 +52,7 @@ const Card = () => {
           <ErrorAlert error={errorMessage} />
         </div>
       )}
-      {!showAll && (
+      {/* {!showAll && (
         <button
           className="bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded m-2"
           onClick={() => setShowAll(true)}
@@ -61,7 +67,7 @@ const Card = () => {
         >
           Hide Completed
         </button>
-      )}
+      )} */}
       {props.map((props) => {
         return (
           <div className="group w-full lg:w-1/3" key={props.id}>
